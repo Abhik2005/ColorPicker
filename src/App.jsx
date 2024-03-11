@@ -2,10 +2,10 @@ import { useState, useRef,useCallback,useEffect } from "react";
 import { FaCopy } from "react-icons/fa";
 
 export default function App() {
-  const [red, setRed] = useState(0);
-  const [blue, setBlue] = useState(0);
-  const [green, setGreen] = useState(0);
-  const [alpha, setAlpha] = useState(0.5);
+  const [red, setRed] = useState(203);
+  const [blue, setBlue] = useState(162);
+  const [green, setGreen] = useState(204);
+  const [alpha, setAlpha] = useState(1);
   const [bubble, setBubble] = useState(true);
 
   const rgb = `rgb(${red}, ${green}, ${blue},${alpha})`;
@@ -44,7 +44,7 @@ export default function App() {
             className=" copyBox w-96 h-20 bg-black text-center flex items-center justify-between rounded-lg px-10"
             style={{ backgroundColor: rgb }}
           >
-            <h1 className=" copyText text-2xl text-zinc-500">
+            <h1 className=" copyText text-2xl text-zinc-100">
               rgba({red},{green},{blue},{alpha})
             </h1>
             <span
