@@ -1,4 +1,4 @@
-import { useState, useRef,useCallback,useEffect } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { FaCopy } from "react-icons/fa";
 
 export default function App() {
@@ -11,7 +11,7 @@ export default function App() {
   const rgb = `rgb(${red}, ${green}, ${blue},${alpha})`;
 
   const changeValueOfRed = (e) => {
-    setRed(e.target.value)
+    setRed(e.target.value);
   };
   const changeValueofBlue = (e) => {
     setBlue(e.target.value);

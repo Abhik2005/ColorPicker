@@ -1,13 +1,21 @@
 # Color Picker App
 
+At first create a react app and setup tailwindcss, then import all dependencies like useState, useRef, useCallback, useEffect .
+
+## Install react Icon
+
+```javascript
+npm i react-icon
+```
+
 # App UI
 
-```javasript
- 
- export function App(){
+```javascript
+
+export default function App() {
     return(
-<>
-<div className=" main w-full h-screen bg-blue-600 flex items-center justify-center">
+        <>
+        <div className=" main w-full h-screen bg-blue-600 flex items-center justify-center">
         <div className="colorBox py-5 px-5 bg-gray-400 flex flex-col items-center justify-between gap-3 rounded-xl">
           <div
             className=" copyBox w-96 h-20 bg-black text-center flex items-center justify-between rounded-lg px-10"
@@ -76,47 +84,71 @@
           </div>
         </div>
       </div>
-      </>
-      )
- }
+        </>
+    )
+}
+ 
 ```
 
 # Logic For This App
 
 ```javascript
+const [red, setRed] = useState(203);
+const [blue, setBlue] = useState(162);
+const [green, setGreen] = useState(204);
+const [alpha, setAlpha] = useState(1);
+const [bubble, setBubble] = useState(true);
 
- const [red, setRed] = useState(203);
-  const [blue, setBlue] = useState(162);
-  const [green, setGreen] = useState(204);
-  const [alpha, setAlpha] = useState(1);
-  const [bubble, setBubble] = useState(true);
+const rgb = `rgb(${red}, ${green}, ${blue},${alpha})`;
 
-  const rgb = `rgb(${red}, ${green}, ${blue},${alpha})`;
+const changeValueOfRed = (e) => {
+  setRed(e.target.value);
+};
+const changeValueofBlue = (e) => {
+  setBlue(e.target.value);
+};
 
-  const changeValueOfRed = (e) => {
-    setRed(e.target.value)
-  };
-  const changeValueofBlue = (e) => {
-    setBlue(e.target.value);
-  };
+const changeValueofGreen = (e) => {
+  setGreen(e.target.value);
+};
 
-  const changeValueofGreen = (e) => {
-    setGreen(e.target.value);
-  };
+const changeValueofAlpha = (e) => {
+  setAlpha(e.target.value);
+};
 
-  const changeValueofAlpha = (e) => {
-    setAlpha(e.target.value);
-  };
+const copyColor = useCallback(() => {
+  var copyText = document.querySelector(".copyText");
+  if (bubble) {
+    document.querySelector(".copyBtn").style.color = "green";
+    window.navigator.clipboard.writeText(copyText.innerText);
+  }
+  setTimeout(function () {
+    document.querySelector(".copyBtn").style.color = "black";
+  }, 5000);
+}, [rgb]);
+```
+# For Responsive App
 
-  const copyColor = useCallback(() => {
-    var copyText = document.querySelector(".copyText");
-    if (bubble) {
-      document.querySelector(".copyBtn").style.color = "green";
-      window.navigator.clipboard.writeText(copyText.innerText);
+This code paste in index.css file.
+
+```css
+@media only screen and (max-width: 600px) {
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
     }
-    setTimeout(function () {
-      document.querySelector(".copyBtn").style.color = "black";
-    }, 5000);
-  }, [rgb]);
-
+    .colorBox{
+        width: 87%;
+        height: 50vh;
+    }
+    .copyBox{
+        width: 100%;
+        gap: 20px;
+        padding: 0px 10px;
+    }
+    .inputBox{
+        flex-direction: column;
+    }
+}
 ```
